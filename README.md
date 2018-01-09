@@ -29,10 +29,10 @@ There are 5 main functions.
 ![Test1](./test1.png)
 <p> Things work out pretty well. But some area of footpath is wrongly classified. <p>
 ![Test2](./test2.png)
-<p> Cars are neatly avoided.
-<p> ![Test3](./test3.png)
-<p> Again footpath is wrongly classified.
-<p> ![Test4](./test4.png)
-<p> Works well in shadows and in light.
-<p> ![Test5](./test5.png)
-<p> Complex area is handled well.
+<p> Cars are neatly avoided. <p> 
+![Test3](./test3.png)
+<p> Again footpath is wrongly classified.<p> 
+![Test4](./test4.png)
+<p> Works well in shadows and in light.<p> 
+![Test5](./test5.png)
+<p> Complex area is handled well.<p> 
