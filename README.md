@@ -1,46 +1,34 @@
 # Semantic Segmentation
 ### Introduction
-In this project, you'll label the pixels of a road in images using a Fully Convolutional Network (FCN).
+Label the pixels of road using Fully Conventional Network. 
+The basic idea is presented in https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf. My summary of understanding is as follows. 
+  - Take a image classifier network architecture (in this case VGG16) and change it in a way that spatial dimensions are preserverd. This is done by 
+  - Changing fully connected layers to 1x1 convolutions. HxW is preserved
+  - Using transposed convolutions to 'decode' or upsample H and W
+  - Use skip connections to preserve spatial information (which should also overcome vanishing and explodig gradient)
 
-### Setup
-##### Frameworks and Packages
-Make sure you have the following is installed:
- - [Python 3](https://www.python.org/)
- - [TensorFlow](https://www.tensorflow.org/)
- - [NumPy](http://www.numpy.org/)
- - [SciPy](https://www.scipy.org/)
-##### Dataset
-Download the [Kitti Road dataset](http://www.cvlibs.net/datasets/kitti/eval_road.php) from [here](http://www.cvlibs.net/download.php?file=data_road.zip).  Extract the dataset in the `data` folder.  This will create the folder `data_road` with all the training a test images.
+### Code
+There are 5 main functions. 
+1. load_vgg() : Loads the vgg network and extracts 5 layers, 3 of which we will need to build our subsequent layers on.
+   * These layers are layer3, layer4 and layer4
+2. layers(): Takes the 3 layers and number of output classes (always 2 in our case. Road/No-road) and builds the network
+   * Take layer 7 and use 1x1 convolution to reduce number of filters from previous layer to what we need for our 2 classes.
+   * Upsample this by factor of 2 using transpose convolution
+   * Create a skip connection from layer 4 to upsampled output ( after similarly reducing its number of filters to 2)
+   * Upsample again by factor of 2
+   * Create a skip connection from layer 3
+   * Finally upsample again by factor of 8
+3. optimize() : Create an optimizer for loss function. Loss function is defined using soft max cross entropy. For optimizer   standard Adam optimizer is used.
+4. train_nn: Train the network over given batches and epochs.
+5. run(): This function finally sets up every thing by calling above 4 functions, trains the network and saves samples of inference in run/ directory
 
-### Start
-##### Implement
-Implement the code in the `main.py` module indicated by the "TODO" comments.
-The comments indicated with "OPTIONAL" tag are not required to complete.
-##### Run
-Run the following command to run the project:
-```
-python main.py
-```
-**Note** If running this in Jupyter Notebook system messages, such as those regarding test status, may appear in the terminal rather than the notebook.
 
-### Submission
-1. Ensure you've passed all the unit tests.
-2. Ensure you pass all points on [the rubric](https://review.udacity.com/#!/rubrics/989/view).
-3. Submit the following in a zip file.
- - `helper.py`
- - `main.py`
- - `project_tests.py`
- - Newest inference images from `runs` folder  (**all images from the most recent run**)
- 
- ### Tips
-- The link for the frozen `VGG16` model is hardcoded into `helper.py`.  The model can be found [here](https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/vgg.zip)
-- The model is not vanilla `VGG16`, but a fully convolutional version, which already contains the 1x1 convolutions to replace the fully connected layers. Please see this [forum post](https://discussions.udacity.com/t/here-is-some-advice-and-clarifications-about-the-semantic-segmentation-project/403100/8?u=subodh.malgonde) for more information.  A summary of additional points, follow. 
-- The original FCN-8s was trained in stages. The authors later uploaded a version that was trained all at once to their GitHub repo.  The version in the GitHub repo has one important difference: The outputs of pooling layers 3 and 4 are scaled before they are fed into the 1x1 convolutions.  As a result, some students have found that the model learns much better with the scaling layers included. The model may not converge substantially faster, but may reach a higher IoU and accuracy. 
-- When adding l2-regularization, setting a regularizer in the arguments of the `tf.layers` is not enough. Regularization loss terms must be manually added to your loss function. otherwise regularization is not implemented.
- 
-### Using GitHub and Creating Effective READMEs
-If you are unfamiliar with GitHub , Udacity has a brief [GitHub tutorial](http://blog.udacity.com/2015/06/a-beginners-git-github-tutorial.html) to get you started. Udacity also provides a more detailed free [course on git and GitHub](https://www.udacity.com/course/how-to-use-git-and-github--ud775).
+### Results
+1. The results are pretty impressive in that almost all of the road pixels are classified as such. However it does seem that it does wrongly classifies many pixels also. Below are few examples.
 
-To learn about REAMDE files and Markdown, Udacity provides a free [course on READMEs](https://www.udacity.com/courses/ud777), as well. 
 
-GitHub also provides a [tutorial](https://guides.github.com/features/mastering-markdown/) about creating Markdown files.
+
+
+
+
+
