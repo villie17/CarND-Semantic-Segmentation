@@ -1,4 +1,7 @@
 # Semantic Segmentation
+### Repo link:
+https://github.com/villie17/CarND-Semantic-Segmentation
+
 ### Introduction
 Label the pixels of road using Fully Conventional Network. 
 The basic idea is presented in https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf. My summary of understanding is as follows. 
