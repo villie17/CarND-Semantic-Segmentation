@@ -31,8 +31,8 @@ There are 5 main functions.
 ![Test2](./test2.png)
 <br/> Cars are neatly avoided. <br/>
 ![Test3](./test3.png)
-<p> Again footpath is wrongly classified.<p> 
+<br/> Again footpath is wrongly classified.<br/> 
 ![Test4](./test4.png)
-<p> Works well in shadows and in light.<p> 
+<br/> Works well in shadows and in light.<br/> 
 ![Test5](./test5.png)
-<p> Complex area is handled well.<p> 
+<br/> Complex area is handled well.<br/> 
