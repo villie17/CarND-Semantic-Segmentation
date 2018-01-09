@@ -26,9 +26,9 @@ There are 5 main functions.
 ### Results
 1. The results are pretty impressive in that almost all of the road pixels are classified as such. However it does seem that it does wrongly classifies many pixels also. Below are few examples.
 
-<p> ![Test1](./test1.png)
-<p> Things work out pretty well. But some area of footpath is wrongly classified.
-<p> ![Test2](./test2.png)
+![Test1](./test1.png)
+<p> Things work out pretty well. But some area of footpath is wrongly classified. <p>
+![Test2](./test2.png)
 <p> Cars are neatly avoided.
 <p> ![Test3](./test3.png)
 <p> Again footpath is wrongly classified.
