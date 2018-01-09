@@ -26,9 +26,8 @@ There are 5 main functions.
 ### Results
 1. The results are pretty impressive in that almost all of the road pixels are classified as such. However it does seem that it does wrongly classifies many pixels also. Below are few examples.
 
-
-
-
-
-
-
+![Test1](./test1.png)
+![Test2](./test2.png)
+![Test3](./test3.png)
+![Test4](./test4.png)
+![Test5](./test5.png)
